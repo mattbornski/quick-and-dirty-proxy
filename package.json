@@ -1,0 +1,25 @@
+{
+	"name": "quick-and-dirty-proxy",
+	"version": "0.0.1",
+	"description": "a proxy server for Heroku",
+	"main": "server.js",
+	"scripts": {},
+	"dependencies": {
+		"http-proxy": "0.10.x",
+		"proxy-by-url": "0.0.3"
+	},
+	"engines": {
+		"node": "0.10.x",
+		"npm": "1.3.x"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mattbornski/quick-and-dirty-proxy"
+	},
+	"keywords": [
+		"node",
+		"heroku",
+		"proxy"
+	],
+	"author": "stack overflow"
+}
