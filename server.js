@@ -1,15 +1,26 @@
 #!/usr/bin/env node
 
-var httpProxy = require('http-proxy');
-var proxyByUrl = require('proxy-by-url');
+var http = require('http')
+var httpProxy = require('http-proxy')
 
-var port = process.env.PORT || 8000;
+var localPort = process.env.LOCAL_PORT || 8000
+var remoteServer = process.env.REMOTE_SERVER || 'www.google.com'
 
-var routing = {
-	'/': {
-		'port': process.env.FORWARD_PORT || 80,
-		'host': process.env.FORWARD_HOST || 'www.google.com',
-	},
-}
+var proxy = new httpProxy.HttpProxy({ 
+  target: {
+    host: remoteServer, 
+    port: 443,
+    https: true
+  }
+});
 
-var server = httpProxy.createServer(proxyByUrl(routing)).listen(port);
+http.createServer(function (req, res) {
+  console.log(req.method + " " + req.url)
+  for (var header in req.headers) {
+  	console.log(header + ": " + req.headers[header])
+  }
+  console.log("")
+  console.log(req.body)
+
+  proxy.proxyRequest(req, res)
+}).listen(localPort)
