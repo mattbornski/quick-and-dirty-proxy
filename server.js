@@ -3,8 +3,8 @@
 var http = require('http')
 var httpProxy = require('http-proxy')
 
-var localPort = process.env.LOCAL_PORT || 8000
-var remoteServer = process.env.REMOTE_SERVER || 'www.google.com'
+var localPort = process.env.PORT || 8000
+var remoteServer = process.env.SERVER || 'www.google.com'
 
 var proxy = new httpProxy.HttpProxy({ 
   target: {
